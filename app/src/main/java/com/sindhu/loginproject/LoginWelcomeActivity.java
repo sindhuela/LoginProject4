@@ -1,6 +1,5 @@
 package com.sindhu.loginproject;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -22,9 +21,13 @@ public class LoginWelcomeActivity extends AppCompatActivity {
         String email = bundle.getString("email");
 
         UserInfo userInfo = new DatabaseHelper(this).getData(email);
-        displayName.setText(userInfo.getName());
-        displayMailId.setText(userInfo.getMailId());
-        displayContact.setText(userInfo.getPhone());
+        if (userInfo != null) {
+            displayName.setText(userInfo.getName());
+            displayMailId.setText(userInfo.getMailId());
+            displayContact.setText(userInfo.getPhone());
+        } else {
+            //no data will be displayed
+        }
 
     }
 
